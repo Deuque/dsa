@@ -19,16 +19,16 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		return nil
 	}
 	if d1 == nil {
-		sum = intFromString(splitStringAndReverse(*d2))
+		sum = intFromString(reverseString(*d2))
 	} else if d2 == nil {
-		sum = intFromString(splitStringAndReverse(*d1))
+		sum = intFromString(reverseString(*d1))
 	} else {
-		sum = intFromString(splitStringAndReverse(*d1)) + intFromString(splitStringAndReverse(*d2))
+		sum = intFromString(reverseString(*d1)) + intFromString(reverseString(*d2))
 	}
 
 	fmt.Println(sum)
 	sumsplit := strings.Split(fmt.Sprintf("%v", sum), "")
-	rsumsplit := reverse(sumsplit)
+	rsumsplit := reverseList(sumsplit)
 	fmt.Println(rsumsplit)
 	return appendAllDigits(rsumsplit)
 
@@ -42,20 +42,17 @@ func FloatFromString(item string) float64 {
 	val, _ := strconv.ParseFloat(item, 64)
 	return val
 }
-func splitStringAndReverse(item string) string {
-	fmt.Println(item)
-	split := strings.Split(item, "")
-	rsplit := reverse(split)
-	return strings.Join(rsplit, "")
 
+func reverseList(numbers []string) []string {
+	return strings.Split(reverseString(strings.Join(numbers, "")), "")
 }
 
-func reverse(numbers []string) []string {
-	newNumbers := make([]string, len(numbers))
-	for i, j := 0, len(numbers)-1; i <= j; i, j = i+1, j-1 {
-		newNumbers[i], newNumbers[j] = numbers[j], numbers[i]
+func reverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
 	}
-	return newNumbers
+	return string(runes)
 }
 
 func getAllDigits(l *ListNode) *string {
