@@ -11,7 +11,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	d1 := getAllDigits(l1)
 	d2 := getAllDigits(l2)
 	var sum int
@@ -38,7 +38,7 @@ func intFromString(item string) int {
 	val, _ := strconv.Atoi(item)
 	return val
 }
-func floatFromString(item string) float64 {
+func FloatFromString(item string) float64 {
 	val, _ := strconv.ParseFloat(item, 64)
 	return val
 }
